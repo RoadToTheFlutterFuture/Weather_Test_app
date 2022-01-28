@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.weather_test_app">
    <application
-        android:label="weather_test_app"
+        android:label="Weather"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/weather_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -1,0 +1,12 @@
+name: weather_repository
+description: A new Flutter package project.
+publish_to: none
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http:
+  equatable: ^2.0.0

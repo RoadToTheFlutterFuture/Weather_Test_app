@@ -6,11 +6,13 @@ import 'package:weather_repository/weather_repository.dart';
 
 class WeatherRepository {
     final String apiKey;
+    final Map<List, String>? geographicalCoordinates;
 
     static const _openweathermapUrl = 'api.openweathermap.org';
 
     const WeatherRepository({
         required this.apiKey,
+        this.geographicalCoordinates,
     });
 
     Future<Weather> getWeather(String city) async {
@@ -18,7 +20,16 @@ class WeatherRepository {
         final url = Uri.https(
             _openweathermapUrl,
             '/data/2.5/forecast',
-            {'q': 'Minsk', 'appid': apiKey}
+            geographicalCoordinates == null ?
+            {
+                'q': 'Minsk', 
+                'appid': apiKey,
+            } :
+            {
+                'lat': geographicalCoordinates!['lat'],
+                'lon':  geographicalCoordinates!['lon'],
+                'appid': apiKey,
+            }
         );
 
         final serverResponse = await http.get(url);

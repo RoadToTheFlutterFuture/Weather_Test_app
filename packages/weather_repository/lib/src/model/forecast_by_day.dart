@@ -6,8 +6,8 @@ class ForecastByDay {
     final int cloudiness;
     final double temp;
     final int pressure;
-    final double windSpeed;
-    final double windDirection;
+    final int windDirection;
+    final num windSpeed;
 
     ForecastByDay({
         required this.date,
@@ -17,8 +17,8 @@ class ForecastByDay {
         required this.cloudiness,
         required this.temp,
         required this.pressure,
-        required this.windSpeed,
         required this.windDirection,
+        required this.windSpeed,
     });
 
     factory ForecastByDay.fromJson(Map<String, dynamic> json) {
@@ -26,12 +26,12 @@ class ForecastByDay {
             date: json['dt_txt'] as String,
             description: json['weather'][0]['description'] as String,
             parameter: json['weather'][0]['main'] as String,
-            humidity: json['humidity'] as int,
+            humidity: json['main']['humidity'] as int,
             cloudiness: json['clouds']['all'] as int,
             temp: json['main']['temp'] as double,
             pressure: json['main']['pressure'] as int,
-            windSpeed: json['wind']['speed'] as double,
-            windDirection: json['wind']['deg'] as double,
+            windDirection: json['wind']['deg'] as int,
+            windSpeed: json['wind']['speed'] as num,
         );
     }
 }

@@ -18,7 +18,7 @@ class TodayWeather extends StatelessWidget {
                 children: [
                     Flexible(
                         flex: 3,
-                        child: BigIconWeather(),
+                        child: BigIconWeather(cityTitle: 'London, Uk', tempTitle: '22 C | Sunny'),
                     ),
                     Flexible(
                         flex: 2,

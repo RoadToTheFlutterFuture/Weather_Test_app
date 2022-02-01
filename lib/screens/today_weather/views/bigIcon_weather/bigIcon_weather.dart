@@ -1,10 +1,15 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
 class BigIconWeather extends StatelessWidget {
     final IconData bigIcon;
+    final String cityTitle;
+    final String tempTitle;
 
     const BigIconWeather({
         this.bigIcon = Icons.wb_sunny,
+        this.cityTitle = '-',
+        this.tempTitle = '-',
         Key? key,
     }) : super(key: key);
 
@@ -18,16 +23,35 @@ class BigIconWeather extends StatelessWidget {
                     size: 110
                 ),
                 SizedBox(height: 10,),
-                Text(
-                    'London, Uk',
-                    style: TextStyle(
-                        fontSize: 16,
-                    ),
+                Stack(
+                    alignment: AlignmentDirectional.center,
+                    children:[
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 60),
+                            child: Text(
+                                cityTitle,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                ),
+                            ),
+                        ),
+                        Positioned(
+                            left: 0,
+                            child: DottedBorder(
+                                child: Icon(
+                                    Icons.near_me,
+                                    size: 12,
+                                    color: Colors.green,
+                                ),
+                                color: Colors.grey,
+                            )
+                        )
+                    ]
                 ),
                 SizedBox(height: 10,),
                 Text(
-                    '22 C | Sunny',
-                     style: TextStyle(
+                    tempTitle,
+                    style: TextStyle(
                         fontSize: 20,
                     ),
                 )

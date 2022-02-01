@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:weather_test_app/screens/today_weather/views/bigIcon_weather/bigIcon_weather.dart';
+import 'package:weather_test_app/screens/today_weather/views/parameters_weather/parameters_weather.dart';
+import 'package:weather_test_app/widgets/decoretion_line.dart';
 import 'package:weather_test_app/widgets/weather_bottomNavigationBar/weather_bottomNavigationBar.dart';
 
 class TodayWeather extends StatelessWidget {
@@ -15,15 +18,27 @@ class TodayWeather extends StatelessWidget {
                 children: [
                     Flexible(
                         flex: 3,
-                        child: Container(color: Colors.green,)
+                        child: BigIconWeather(),
                     ),
                     Flexible(
                         flex: 2,
-                        child: Container(color: Colors.red,)
+                        child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                                DecorationLine(bottom: 0,),
+                                ParametersWeather(),
+                                DecorationLine(top: 0,)
+                            ],
+                        )
                     ),
                     Flexible(
                         flex: 1,
-                        child: Container(color: Colors.blue,)
+                        child: Center(
+                            child: TextButton(
+                                onPressed: (){},
+                                child: Text('Share'), //Todo: translate it | Share
+                            ),
+                        )
                     ),
                 ],
             ),

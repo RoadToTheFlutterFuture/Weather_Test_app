@@ -1,47 +1,26 @@
 
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
+import 'package:weather_metadata_api/weather_metadata_api.dart';
 import 'package:weather_repository/weather_repository.dart';
 
+
 class WeatherRepository {
-    final String apiKey;
-    final Map<List, String>? geographicalCoordinates;
+    static const _weatherMetadataApi = WeatherMetadataApi(
+        apiKey: 'a439badca9f3596ee98b0eb090cba0f9'
+    );
 
-    static const _openweathermapUrl = 'api.openweathermap.org';
+    Future<WeatherRepo> getWeater({String? city, Coordinates? cord}) async {
 
-    const WeatherRepository({
-        required this.apiKey,
-        this.geographicalCoordinates,
-    });
+        final Weather weather = city != null ? 
+            await _weatherMetadataApi.getWeatherByCityName(city) :
+            await _weatherMetadataApi.getWeatherByCoordinates(cord!.latitude, cord.longitude);
 
-    Future<Weather> getWeather(String city) async {
+        final CurrentWeather currentWeather = city != null ? 
+            await _weatherMetadataApi.getCurrentWeatherByCityName(city) :
+            await _weatherMetadataApi.getCurrentWeatherByCoordinates(cord!.latitude, cord.longitude);
 
-        final url = Uri.https(
-            _openweathermapUrl,
-            '/data/2.5/forecast',
-            geographicalCoordinates == null ?
-            {
-                'q': 'Minsk', 
-                'appid': apiKey,
-            } :
-            {
-                'lat': geographicalCoordinates!['lat'],
-                'lon':  geographicalCoordinates!['lon'],
-                'appid': apiKey,
-            }
+        return WeatherRepo(
+            today: currentWeather,
+            fewDays: weather,
         );
-
-        final serverResponse = await http.get(url);
-    
-        if (serverResponse.statusCode != 200) {
-            throw Error();
-        }
-
-        final json = jsonDecode(serverResponse.body);
-
-        final Weather weather = Weather.fromJson(json);
-
-        return weather;
     }
 }

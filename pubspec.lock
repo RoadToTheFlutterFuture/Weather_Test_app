@@ -467,13 +467,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+  weather_metadata_api:
+    dependency: transitive
+    description:
+      path: "packages/weather_metadata_api"
+      relative: true
+    source: path
+    version: "0.0.1"
   weather_repository:
     dependency: "direct main"
     description:
       path: "packages/weather_repository"
       relative: true
     source: path
-    version: "0.0.0"
+    version: "0.0.1"
   win32:
     dependency: transitive
     description:

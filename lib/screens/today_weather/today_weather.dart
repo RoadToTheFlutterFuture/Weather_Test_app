@@ -11,36 +11,41 @@ class TodayWeather extends StatelessWidget {
     Widget build(BuildContext context) {
         return Scaffold(
             appBar: AppBar(
-                title: Text('Today'), //Todo: translate it | Today
+                title: Text('Today'), //TODO: translate it | Today
             ),
             bottomNavigationBar: WeatherBottomNavigationBar(),
-            body: Column(
-                children: [
-                    Flexible(
-                        flex: 3,
-                        child: BigIconWeather(cityTitle: 'London, Uk', tempTitle: '22 C | Sunny'),
-                    ),
-                    Flexible(
-                        flex: 2,
-                        child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                                DecorationLine(bottom: 0,),
-                                ParametersWeather(),
-                                DecorationLine(top: 0,)
-                            ],
-                        )
-                    ),
-                    Flexible(
-                        flex: 1,
-                        child: Center(
-                            child: TextButton(
-                                onPressed: (){},
-                                child: Text('Share'), //Todo: translate it | Share
-                            ),
-                        )
-                    ),
-                ],
+            body: Stack(
+              children:[
+                Column(
+                  children: [
+                      Flexible(
+                          flex: 3,
+                          child: BigIconWeather(cityTitle: 'London, Uk', tempTitle: '22 C | Sunny'),
+                      ),
+                      Flexible(
+                          flex: 2,
+                          child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                  DecorationLine(bottom: 0,),
+                                  ParametersWeather(),
+                                  DecorationLine(top: 0,)
+                              ],
+                          )
+                      ),
+                      Flexible(
+                          flex: 1,
+                          child: Center(
+                              child: TextButton(
+                                  onPressed: (){print('Send');},
+                                  child: Text('Share'), //TODO: translate it | Share
+                              ),
+                          )
+                      ),
+                  ],
+              ),
+              Container(color: Colors.transparent),
+              ]
             ),
         );
     }

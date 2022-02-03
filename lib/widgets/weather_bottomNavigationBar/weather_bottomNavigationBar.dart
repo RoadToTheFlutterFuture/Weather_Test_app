@@ -14,15 +14,15 @@ class WeatherBottomNavigationBar extends StatelessWidget {
             items: [
                 BottomNavigationBarItem(
                     icon: Icon(Icons.wb_sunny), 
-                    label: 'Today', //Todo: translate it | Today
+                    label: 'Today', //TODO: translate it | Today
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.wallet_membership), 
-                    label: 'Forecast', //Todo: translate it | Forecast
+                    label: 'Forecast', //TODO: translate it | Forecast
                 ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.settings), 
-                    label: 'Settings', //Todo: translate it | Settings
+                    label: 'Settings', //TODO: translate it | Settings
                 ),
             ]
         );

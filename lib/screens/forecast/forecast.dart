@@ -75,7 +75,10 @@ class ListTileWithBottomBorder extends StatelessWidget {
                     child: ListTile(
                         contentPadding: EdgeInsets.only(left: 0, top: 5, bottom: 5),
                         title: Text(title),
-                        trailing: Text(trailing, style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500)),
+                        trailing: Padding(
+                          padding: const EdgeInsets.only(right: 15),
+                          child: Text(trailing, style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500)),
+                        ),
                         subtitle: Text(subtitle),
                         style: ListTileStyle.list,
                     ),

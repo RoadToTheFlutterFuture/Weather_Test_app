@@ -41,15 +41,66 @@ class DailyWeatherSilverList extends StatelessWidget {
    }
 
    Widget _SilverBuilder(BuildContext context, int index) {
-         return  Container(
-             padding: EdgeInsets.all(50),
-             height: 100,
-             color: index.isEven ? Colors.red : Colors.amber,
+         return  ListTileWithBottomBorder(
+             isLastTile: index == 4,
+             title: '16:00',
+             subtitle: 'Few Clouds',
+             trailing: '10',
          );
    }
- }
+}
 
- class WeatherSilverAppBar extends StatelessWidget {
+class ListTileWithBottomBorder extends StatelessWidget {
+    final bool isLastTile;
+    final String title;
+    final String subtitle;
+    final String trailing;
+
+    const ListTileWithBottomBorder({
+        this.title = '',
+        this.subtitle = '',
+        this.trailing = '',
+        this.isLastTile = false,
+        Key? key
+    }) : super(key: key);
+
+    @override
+    Widget build(BuildContext context) {
+        return Stack(
+            alignment: Alignment.center,
+          children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 95),
+                child: Container(
+                    child: ListTile(
+                        contentPadding: EdgeInsets.only(left: 0, top: 5, bottom: 5),
+                        title: Text(title),
+                        trailing: Text(trailing, style: TextStyle(fontSize: 40, fontWeight: FontWeight.w500)),
+                        subtitle: Text(subtitle),
+                        style: ListTileStyle.list,
+                    ),
+                    decoration: isLastTile ? null : BoxDecoration(
+                        border: Border(
+                            bottom: BorderSide(
+                                color: Colors.grey
+                            )
+                        )
+                    )
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(left: 15),
+                alignment: Alignment.centerLeft,
+                child: Icon(Icons.wb_sunny_outlined, size: 60,)
+              ),
+          ] 
+        );
+    }
+}
+
+
+
+class WeatherSilverAppBar extends StatelessWidget {
      final bool status;
      final String title;
 
@@ -64,14 +115,22 @@ class DailyWeatherSilverList extends StatelessWidget {
         return SliverAppBar(
             pinned: true,
             stretch: status,
-            title: status ? null : Text(title),
+            title: status ? null : Container(
+                width: double.infinity,
+                child: Text(title),
+            ),
             flexibleSpace: status ?
                 FlexibleSpaceBar(
-                    title: Text('first'),
+                    titlePadding: EdgeInsets.only(left: 15, bottom: 15),
+                    centerTitle: false,
+                    title: Container(
+                        height: double.infinity,
+                         alignment: Alignment.bottomLeft,
+                        child: Text('First')),
                 ) :
                 null,
         );
     }
- }
+}
 
  

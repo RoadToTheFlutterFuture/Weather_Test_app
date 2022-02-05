@@ -1,13 +1,16 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 class BigIconWeather extends StatelessWidget {
-    final IconData bigIcon;
+    static const defaultIcon = WeatherIcons.day_sunny;
+
+    final IconData? bigIcon;
     final String cityTitle;
     final String tempTitle;
 
     const BigIconWeather({
-        this.bigIcon = Icons.wb_sunny,
+        this.bigIcon = defaultIcon,
         this.cityTitle = '-',
         this.tempTitle = '-',
         Key? key,
@@ -18,9 +21,10 @@ class BigIconWeather extends StatelessWidget {
         return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-                Icon(
-                    Icons.wb_sunny_outlined,
-                    size: 110
+                BoxedIcon(
+                    bigIcon!,
+                    size: 110,
+                    color: Colors.yellow[800],
                 ),
                 SizedBox(height: 10,),
                 Stack(

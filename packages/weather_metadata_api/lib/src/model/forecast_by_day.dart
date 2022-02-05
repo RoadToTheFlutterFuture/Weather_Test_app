@@ -4,7 +4,7 @@ class ForecastByDay {
     final String parameter;
     final int humidity;
     final int cloudiness;
-    final double temp;
+    final num temp;
     final int pressure;
     final int windDirection;
     final num windSpeed;
@@ -28,7 +28,7 @@ class ForecastByDay {
             parameter: json['weather'][0]['main'] as String,
             humidity: json['main']['humidity'] as int,
             cloudiness: json['clouds']['all'] as int,
-            temp: json['main']['temp'] as double,
+            temp: json['main']['temp'] as num,
             pressure: json['main']['pressure'] as int,
             windDirection: json['wind']['deg'] as int,
             windSpeed: json['wind']['speed'] as num,

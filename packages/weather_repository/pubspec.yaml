@@ -1,12 +1,17 @@
 name: weather_repository
-description: A new Flutter package project.
+description: Weather Repository.
+version: 0.0.1
 publish_to: none
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  flutter:
+  weather_metadata_api:
+    path: ../weather_metadata_api
+
+
+dev_dependencies:
+  flutter_test:
     sdk: flutter
-  http:
-  equatable: ^2.0.0
+  flutter_lints: ^1.0.0

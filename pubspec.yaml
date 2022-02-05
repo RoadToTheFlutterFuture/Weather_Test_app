@@ -20,6 +20,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   weather_repository:
     path: packages/weather_repository
+  weather_icons: ^3.0.0
   
 
 dev_dependencies:

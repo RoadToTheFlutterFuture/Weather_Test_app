@@ -2,8 +2,10 @@
 * Convert speed m/s to km/h
 */
 
-num getSpeedInKH({required num speed}){
-    return speed * 3.6;
+String getSpeedInKH({required num speed}){
+    final num speedInKH = speed * 3.6;
+
+    return '${speedInKH.round()}';
 }
 
 /*

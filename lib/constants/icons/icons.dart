@@ -1,6 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
 
+/*
+* Icons for weather decoration
+* - - - - - - - - -
+* d - day
+* n - night
+* - - - - - - - - -
+* 01 - clear sky,
+* 02 - few clouds,
+* 03 - scattered clouds,
+* 04 - broken clouds,
+* 09 - shower rain,
+* 10 - rain,
+* 11 - thunderstorm,
+* 13 - snow,
+* 50 - mist,
+*/
+
 const Map<String, IconData> weatherDecoration = {
     '01d': WeatherIcons.day_sunny,
     '02d': WeatherIcons.day_cloudy,
@@ -23,10 +40,11 @@ const Map<String, IconData> weatherDecoration = {
 };
 
 const Map<String, IconData> appIcons = {
-    'wind': WeatherIcons.strong_wind,
-    'degreesCelsius': WeatherIcons.celsius,
+    'humidity': WeatherIcons.rain,
+    'other': WeatherIcons.raindrop,
+    'pressure': WeatherIcons.celsius,
+    'windSpeed': WeatherIcons.strong_wind,
     'windDirection': WeatherIcons.wind_direction,
-    'humidity': WeatherIcons.humidity,
 };
 
 const Map<String, IconData> navigationBarIcons = {

@@ -8,11 +8,13 @@ enum TodayWeatherStatus {
 }
 
 class TodayWeatherState extends Equatable {
-    final WeatherRepo? repository;
+    final TodayWeather? repository;
     final TodayWeatherStatus status;
+    final List<String>? userLocation;
 
     const TodayWeatherState({
         this.repository,
+        this.userLocation,
         required this.status,
     });
 
@@ -20,12 +22,14 @@ class TodayWeatherState extends Equatable {
     List<Object> get props => [status];
 
     TodayWeatherState copyWith({
-        WeatherRepo? repository,
+        TodayWeather? repository,
         TodayWeatherStatus? status,
+        List<String>? userLocation,
     }) {
         return TodayWeatherState(
             repository: repository ?? this.repository,
-            status: status ?? this.status
+            status: status ?? this.status,
+            userLocation: userLocation ?? this.userLocation,
         );
     }
 }

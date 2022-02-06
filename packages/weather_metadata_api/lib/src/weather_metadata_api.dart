@@ -85,7 +85,6 @@ class WeatherMetadataApi {
     }
 
     Future<Weather> getWeatherByCoordinates(String lat, String lon) async {
-
         final url = Uri.https(
             _openweathermapUrl,
             '/data/2.5/forecast',

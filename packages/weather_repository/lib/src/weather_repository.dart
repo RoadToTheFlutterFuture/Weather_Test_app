@@ -8,15 +8,15 @@ class WeatherRepository {
         apiKey: 'a439badca9f3596ee98b0eb090cba0f9'
     );
 
-    Future<WeatherRepo> getWeater({String? city, Coordinates? cord}) async {
+    Future<WeatherRepo> getWeater({List<String>? coord}) async {
 
-        final Weather weather = city != null ? 
-            await _weatherMetadataApi.getWeatherByCityName(city) :
-            await _weatherMetadataApi.getWeatherByCoordinates(cord!.latitude, cord.longitude);
+        final Weather weather = coord!.length == 0 ? 
+            await _weatherMetadataApi.getWeatherByCityName(coord.first) :
+            await _weatherMetadataApi.getWeatherByCoordinates(coord.first, coord.last);
 
-        final CurrentWeather currentWeather = city != null ? 
-            await _weatherMetadataApi.getCurrentWeatherByCityName(city) :
-            await _weatherMetadataApi.getCurrentWeatherByCoordinates(cord!.latitude, cord.longitude);
+        final CurrentWeather currentWeather = coord.length == 0 ? 
+            await _weatherMetadataApi.getCurrentWeatherByCityName(coord.first) :
+            await _weatherMetadataApi.getCurrentWeatherByCoordinates(coord.first, coord.last);
 
         return WeatherRepo(
             today: currentWeather,

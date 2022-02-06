@@ -7,11 +7,12 @@ class CurrentWeather {
     final String parameter;
     final String icon;
     final String windDirection;
+    final String windSpeed;
     final num humidity;
     final num cloudiness;
     final num temp;
     final num pressure;
-    final num windSpeed;
+
 
     CurrentWeather({
         required this.city,

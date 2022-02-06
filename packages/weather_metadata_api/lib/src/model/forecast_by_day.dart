@@ -6,18 +6,22 @@ class ForecastByDay {
     final String time;
     final String description;
     final String parameter;
-    final int humidity;
-    final int cloudiness;
+    final num humidity;
+    final num cloudiness;
     final num temp;
-    final int pressure;
-    final int windDirection;
+    final num pressure;
+    final num windDirection;
     final num windSpeed;
+    final Map snowPrecipitations;
+    final Map rainPrecipitations;
 
     ForecastByDay({
         required this.date,
         required this.time,
         required this.description,
         required this.parameter,
+        required this.snowPrecipitations,
+        required this.rainPrecipitations,
         required this.humidity,
         required this.cloudiness,
         required this.temp,
@@ -32,11 +36,13 @@ class ForecastByDay {
             time: getHours(utcDate: json['dt_txt'] as String),
             description: json['weather'][0]['description'] as String,
             parameter: json['weather'][0]['main'] as String,
-            humidity: json['main']['humidity'] as int,
-            cloudiness: json['clouds']['all'] as int,
-            temp: json['main']['temp'] as num,
-            pressure: json['main']['pressure'] as int,
-            windDirection: json['wind']['deg'] as int,
+            snowPrecipitations: (json['snow'] ?? {}) as Map,
+            rainPrecipitations: (json['rain'] ?? {}) as Map,
+            humidity: json['main']['humidity'] as num,
+            cloudiness: json['clouds']['all'] as num,
+            temp: getIntegerNumber(number: json['main']['temp'] as num),
+            pressure: json['main']['pressure'] as num,
+            windDirection: json['wind']['deg'] as num,
             windSpeed: json['wind']['speed'] as num,
         );
     }

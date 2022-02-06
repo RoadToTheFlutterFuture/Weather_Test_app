@@ -23,52 +23,55 @@ class TodayWeather extends StatelessWidget {
                 }
                 return Scaffold(
                     appBar: AppBar(
+                        centerTitle: true,
                         title: Text('Today'), //TODO: translate it | Today
                     ),
                     bottomNavigationBar: WeatherBottomNavigationBar(),
                     body: state.status == TodayWeatherStatus.gettingWeather ?
                         Center(child: SpinKitThreeBounce(color: Colors.grey,),) :
-                        Stack(
+                        Column(
                             children: [
-                                Column(
-                                    children: [
-                                    Flexible(
-                                        flex: 3,
-                                        child: BigIconWeather(
-                                            cityTitle: '${state.repository!.today.city}, ${state.repository!.today.countryCode}',
-                                            tempTitle: '${state.repository!.today.temp}℃ | ${state.repository!.today.parameter}',
-                                            bigIcon: weatherDecoration[state.repository!.today.icon],
-                                        ),
+                                Flexible(
+                                    flex: 3,
+                                    child: BigIconWeather(
+                                        cityTitle: state.repository!.cityTitle,
+                                        tempTitle: state.repository!.tempTitle,
+                                        bigIcon: weatherDecoration[state.repository!.bigIcon],
                                     ),
-                                    Flexible(
-                                        flex: 2,
-                                        child: Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                                DecorationLine(
-                                                    bottom: 0,
-                                                ),
-                                                ParametersWeather(),
-                                                DecorationLine(
-                                                    top: 0,
-                                                )
-                                            ],
-                                        )
-                                    ),
-                                    Flexible(
-                                        flex: 1,
-                                        child: Center(
-                                            child: TextButton(
-                                            onPressed: () {
-                                                print('Send');
-                                            },
-                                            child: Text('Share'), //TODO: translate it | Share
-                                            ),
-                                        )),
-                                    ],
                                 ),
-                                Container(color: Colors.transparent),
-                            ]
+                                Flexible(
+                                    flex: 2,
+                                    child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                            DecorationLine(
+                                                bottom: 0,
+                                            ),
+                                            ParametersWeather(
+                                                humidity: state.repository!.humidity,
+                                                precipitationVolume: state.repository!.precipitations,
+                                                pressure: state.repository!.pressure,
+                                                windSpeed: state.repository!.windSpeed,
+                                                windDirection: state.repository!.windDirection,
+                                            ),
+                                            DecorationLine(
+                                                top: 0,
+                                            )
+                                        ],
+                                    )
+                                ),
+                                Flexible(
+                                    flex: 1,
+                                    child: Center(
+                                        child: TextButton(
+                                            onPressed: () {
+                                                print('click');
+                                                context.read<TodayWeatherCubit>().shareWeatherText();
+                                            },
+                                        child: Text('Share'), //TODO: translate it | Share
+                                        ),
+                                    )),
+                             ],
                         ),
                 );
             },

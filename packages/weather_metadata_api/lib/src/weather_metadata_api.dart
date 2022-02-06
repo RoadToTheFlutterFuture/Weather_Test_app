@@ -19,7 +19,11 @@ class WeatherMetadataApi {
         final url = Uri.https(
             _openweathermapUrl,
             '/data/2.5/weather',
-            {'q': city, 'appid': apiKey,}
+            {
+                'q': city,
+                'appid': apiKey,
+                'units': 'metric'
+            }
         );
 
         final serverResponse = await http.get(url);
@@ -42,6 +46,7 @@ class WeatherMetadataApi {
                 'lat': lat,
                 'lon':  lon,
                 'appid': apiKey,
+                'units': 'metric',
             }
         );
 
@@ -61,7 +66,11 @@ class WeatherMetadataApi {
         final url = Uri.https(
             _openweathermapUrl,
             '/data/2.5/forecast',
-            {'q': city, 'appid': apiKey,}
+            {
+                'q': city,
+                'appid': apiKey,
+                'units': 'metric',
+            }
         );
 
         final serverResponse = await http.get(url);
@@ -84,6 +93,7 @@ class WeatherMetadataApi {
                 'lat': lat,
                 'lon':  lon,
                 'appid': apiKey,
+                'units': 'metric',
             }
         );
 

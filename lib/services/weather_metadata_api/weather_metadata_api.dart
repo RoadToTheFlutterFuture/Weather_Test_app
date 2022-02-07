@@ -1,9 +1,7 @@
-
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:weather_metadata_api/src/model/model.dart';
 
+import 'package:weather_test_app/services/weather_metadata_api/model/model.dart';
 
 class WeatherMetadataApi {
     final String apiKey;

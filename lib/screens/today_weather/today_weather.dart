@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:weather_repository/weather_repository.dart';
-import 'package:weather_test_app/constants/icons/icons.dart';
 import 'package:weather_test_app/screens/today_weather/cubit/today_weather_cubit.dart';
 import 'package:weather_test_app/screens/today_weather/views/bigIcon_weather/bigIcon_weather.dart';
 import 'package:weather_test_app/screens/today_weather/views/parameters_weather/parameters_weather.dart';
+import 'package:weather_test_app/services/weather_repository/weather_repository.dart';
 import 'package:weather_test_app/widgets/decoretion_line.dart';
-import 'package:weather_test_app/widgets/weather_bottomNavigationBar/weather_bottomNavigationBar.dart';
 
 class TodayWeather extends StatelessWidget {
   const TodayWeather({Key? key}) : super(key: key);
@@ -21,22 +19,15 @@ class TodayWeather extends StatelessWidget {
                 if(state.status == TodayWeatherStatus.gettingWeather) {
                     context.read<TodayWeatherCubit>().fetchWeather();
                 }
-                return Scaffold(
-                    appBar: AppBar(
-                        centerTitle: true,
-                        title: Text('Today'), //TODO: translate it | Today
-                    ),
-                    bottomNavigationBar: WeatherBottomNavigationBar(),
-                    body: state.status == TodayWeatherStatus.gettingWeather ?
+                return state.status == TodayWeatherStatus.gettingWeather ?
                         Center(child: SpinKitThreeBounce(color: Colors.grey,),) :
                         Column(
                             children: [
                                 Flexible(
                                     flex: 3,
                                     child: BigIconWeather(
-                                        cityTitle: state.repository!.cityTitle,
-                                        tempTitle: state.repository!.tempTitle,
-                                        bigIcon: weatherDecoration[state.repository!.bigIcon],
+                                        tempTitle:  '',
+                                        bigIcon: Icons.ac_unit_outlined,
                                     ),
                                 ),
                                 Flexible(
@@ -48,11 +39,11 @@ class TodayWeather extends StatelessWidget {
                                                 bottom: 0,
                                             ),
                                             ParametersWeather(
-                                                humidity: state.repository!.humidity,
-                                                precipitationVolume: state.repository!.precipitations,
-                                                pressure: state.repository!.pressure,
-                                                windSpeed: state.repository!.windSpeed,
-                                                windDirection: state.repository!.windDirection,
+                                                // humidity: state.repository!.humidity,
+                                                // precipitationVolume: state.repository!.precipitations,
+                                                // pressure: state.repository!.pressure,
+                                                // windSpeed: state.repository!.windSpeed,
+                                                // windDirection: state.repository!.windDirection,
                                             ),
                                             DecorationLine(
                                                 top: 0,
@@ -72,8 +63,7 @@ class TodayWeather extends StatelessWidget {
                                         ),
                                     )),
                              ],
-                        ),
-                );
+                    );
             },
         ),
     );

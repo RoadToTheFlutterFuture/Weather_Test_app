@@ -1,4 +1,5 @@
-import 'package:weather_metadata_api/helpers/helpers.dart';
+
+import 'package:weather_test_app/services/weather_metadata_api/helpers/helpers.dart';
 
 class CurrentWeather {
     final String city;
@@ -12,7 +13,6 @@ class CurrentWeather {
     final num cloudiness;
     final num temp;
     final num pressure;
-
 
     CurrentWeather({
         required this.city,

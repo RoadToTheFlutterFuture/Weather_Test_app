@@ -7,4 +7,5 @@ const Map<String, Color> appColors = {
     'decorationLine': Colors.brown,
     'decorationBigIcons': Colors.orange,
     'textButton': Colors.deepOrange,
+    
 };

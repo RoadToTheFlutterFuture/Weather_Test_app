@@ -2,11 +2,11 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_repository/weather_repository.dart';
-import 'package:weather_test_app/config/routes/routes.dart';
+import 'package:weather_test_app/screens/weatherApp.dart';
 
 import 'config/themes/dark_theme.dart';
 import 'config/themes/light_theme.dart';
+import 'services/weather_repository/weather_repository.dart';
 
 class App extends StatelessWidget {
     final WeatherRepository weatherRepository;
@@ -39,7 +39,7 @@ class _WeatherMaterialApp extends StatelessWidget {
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
-                routes: AppRoutes,
+                home: MainWeatherScreen(),
             ),
         );
     }

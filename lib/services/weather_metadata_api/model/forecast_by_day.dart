@@ -1,20 +1,47 @@
 
 
 
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:weather_test_app/services/weather_metadata_api/helpers/helpers.dart';
 
+part 'forecast_by_day.g.dart';
+
+@HiveType(typeId: 2)
 class ForecastByDay {
+    @HiveField(0)
     final String date;
+
+    @HiveField(1)
     final String time;
+
+    @HiveField(2)
     final String description;
+
+    @HiveField(3)
     final String parameter;
+
+    @HiveField(4)
     final num humidity;
+
+    @HiveField(5)
     final num cloudiness;
+
+    @HiveField(6)
     final num temp;
+
+    @HiveField(7)
     final num pressure;
+
+    @HiveField(8)
     final num windDirection;
+
+    @HiveField(9)
     final num windSpeed;
+
+    @HiveField(10)
     final Map snowPrecipitations;
+
+    @HiveField(11)
     final Map rainPrecipitations;
 
     ForecastByDay({

@@ -1,29 +1,18 @@
 
 
 import 'package:weather_test_app/services/weather_metadata_api/helpers/helpers.dart';
-
-import 'city.dart';
 import 'forecast_by_day.dart';
 
 class Weather {
-    final String cod;
-    final int cnt;
-    final City city;
     final Map<String, dynamic> forecastByDay;
 
     const Weather({
-        required this.cod,
-        required this.cnt,
-        required this.city,
         required this.forecastByDay,
     });
 
     factory Weather.fromJson(Map<String, dynamic> json) {
         return Weather(
-            cod: json['cod'] as String,
-            cnt: json['cnt'] as int,
-            city: City.fromJson(json['city']),
-            forecastByDay: _getDailyWeather(json['list']),
+            forecastByDay: _getDailyWeather(json['list'] as List<dynamic>),
         );
     }
 }

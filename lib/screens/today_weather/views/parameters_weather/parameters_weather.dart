@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:weather_test_app/constants/icons/icons.dart';
+import 'package:weather_test_app/services/data_models/data_models.dart';
 import 'package:weather_test_app/widgets/icon_with_bottomTitle.dart';
 
 class ParametersWeather extends StatelessWidget {
-    final String humidity; 
-    final String precipitationVolume; 
-    final String pressure; 
-    final String windSpeed; 
-    final String windDirection; 
+    final TodayWeather? parameters; 
 
     const ParametersWeather({
-        this.humidity = 'humidity',
-        this.precipitationVolume = 'precipitation',
-        this.pressure = 'pressure',
-        this.windSpeed = 'speed',
-        this.windDirection = 'direction',
+        this.parameters,
         Key? key
         }) : super(key: key);
 
@@ -28,17 +21,17 @@ class ParametersWeather extends StatelessWidget {
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                            IconWithBottomTitle(icon: appIcons['humidity'] as IconData, title: humidity,),
-                            IconWithBottomTitle(icon: appIcons['other'] as IconData, title: precipitationVolume,),
-                            IconWithBottomTitle(icon: appIcons['pressure'] as IconData, title: pressure,),
+                            IconWithBottomTitle(icon: appIcons['humidity'] as IconData, title: parameters!.humidity,),
+                            IconWithBottomTitle(icon: appIcons['other'] as IconData, title: parameters!.precipitations,),
+                            IconWithBottomTitle(icon: appIcons['pressure'] as IconData, title: parameters!.pressure,),
                         ],
                     ),
                     SizedBox(height: 20,),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                            IconWithBottomTitle(icon: appIcons['windSpeed'] as IconData, title: windSpeed,),
-                            IconWithBottomTitle(icon: appIcons['windDirection'] as IconData, title: windDirection,),
+                            IconWithBottomTitle(icon: appIcons['windSpeed'] as IconData, title: parameters!.windSpeed,),
+                            IconWithBottomTitle(icon: appIcons['windDirection'] as IconData, title: parameters!.windDirection,),
                         ],
                     ),
                 ],

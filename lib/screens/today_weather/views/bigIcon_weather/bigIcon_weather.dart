@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:weather_icons/weather_icons.dart';
 
 class BigIconWeather extends StatelessWidget {
-    static const defaultIcon = WeatherIcons.day_sunny;
-
     final IconData? bigIcon;
-    final String cityTitle;
-    final String tempTitle;
+    final String? cityTitle;
+    final String? tempTitle;
 
     const BigIconWeather({
-        this.bigIcon = defaultIcon,
-        this.cityTitle = '-',
-        this.tempTitle = '-',
+        this.bigIcon,
+        this.cityTitle,
+        this.tempTitle,
         Key? key,
     }) : super(key: key);
 
@@ -33,7 +31,7 @@ class BigIconWeather extends StatelessWidget {
                         Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 60),
                             child: Text(
-                                cityTitle,
+                                cityTitle!,
                                 style: TextStyle(
                                     fontSize: 16,
                                 ),
@@ -54,7 +52,7 @@ class BigIconWeather extends StatelessWidget {
                 ),
                 SizedBox(height: 10,),
                 Text(
-                    tempTitle,
+                    tempTitle!,
                     style: TextStyle(
                         fontSize: 20,
                     ),

@@ -6,11 +6,11 @@ import 'package:weather_test_app/constants/colors/colors.dart';
 
 class IconWithBottomTitle extends StatelessWidget {
     final IconData icon;
-    final String title;
+    final String? title;
 
     const IconWithBottomTitle({
         required this.icon,
-        this.title = '-',
+        this.title,
         Key? key
     }) : super(key: key);
 
@@ -25,7 +25,7 @@ class IconWithBottomTitle extends StatelessWidget {
                     child: BoxedIcon(icon, color: appColors['appIcons'],size: 25),
                 ),
                 SizedBox(height: 5),
-                Text(title),
+                Text(title!),
             ],
         );
     }

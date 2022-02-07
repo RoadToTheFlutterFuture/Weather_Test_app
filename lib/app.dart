@@ -26,7 +26,6 @@ class App extends StatelessWidget {
 }
 
 class _WeatherMaterialApp extends StatelessWidget {
-
     @override
     Widget build(BuildContext context) {
         return AdaptiveTheme(

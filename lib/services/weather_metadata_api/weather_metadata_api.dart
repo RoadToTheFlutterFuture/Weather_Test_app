@@ -12,9 +12,61 @@ class WeatherMetadataApi {
         required this.apiKey,
     });
 
-    Future<CurrentWeather> getCurrentWeatherByCityName(String city) async {
+    Future<CurrentWeather> getTodayWeather({required List<String> coord}) async {
+        final url = coord.length == 1 ? _getUrlByCity(coord.first) : _getUrlByCoord(coord.first, coord.last);
 
-        final url = Uri.https(
+        final serverResponse = await http.get(url);
+    
+        if (serverResponse.statusCode != 200) {
+            throw Error();
+        }
+
+        final json = jsonDecode(serverResponse.body);
+
+        return CurrentWeather.fromJson(json);
+    }
+
+    Future<Weather> getFiveDayWeather({required List<String> coord}) async {
+        final url = coord.length == 1 ? _getUrlByForecastCity(coord.first) : _getUrlByForecastCoord(coord.first, coord.last);
+
+        final serverResponse = await http.get(url);
+    
+        if (serverResponse.statusCode != 200) {
+            throw Error();
+        }
+
+        final json = jsonDecode(serverResponse.body);
+
+        return Weather.fromJson(json);
+    }
+
+     _getUrlByForecastCity(String city) {
+        return Uri.https(
+            _openweathermapUrl,
+            '/data/2.5/forecast',
+            {
+                'q': city,
+                'appid': apiKey,
+                'units': 'metric'
+            }
+        );
+    }
+
+    _getUrlByForecastCoord(String lat, String lon) {
+        return Uri.https(
+            _openweathermapUrl,
+            '/data/2.5/forecast',
+            {
+                'lat': lat,
+                'lon':  lon,
+                'appid': apiKey,
+                'units': 'metric',
+            }
+        );
+    }
+
+     _getUrlByCity(String city) {
+        return Uri.https(
             _openweathermapUrl,
             '/data/2.5/weather',
             {
@@ -23,21 +75,10 @@ class WeatherMetadataApi {
                 'units': 'metric'
             }
         );
-
-        final serverResponse = await http.get(url);
-    
-        if (serverResponse.statusCode != 200) {
-            throw Error();
-        }
-
-        final json = jsonDecode(serverResponse.body);
-
-        return CurrentWeather.fromJson(json);
     }
 
-    Future<CurrentWeather> getCurrentWeatherByCoordinates(String lat, String lon) async {
-
-        final url = Uri.https(
+    _getUrlByCoord(String lat, String lon) {
+        return Uri.https(
             _openweathermapUrl,
             '/data/2.5/weather',
             {
@@ -47,61 +88,5 @@ class WeatherMetadataApi {
                 'units': 'metric',
             }
         );
-
-        final serverResponse = await http.get(url);
-    
-        if (serverResponse.statusCode != 200) {
-            throw Error();
-        }
-
-        final json = jsonDecode(serverResponse.body);
-
-        return CurrentWeather.fromJson(json);
-    }
-
-    Future<Weather> getWeatherByCityName(String city) async {
-
-        final url = Uri.https(
-            _openweathermapUrl,
-            '/data/2.5/forecast',
-            {
-                'q': city,
-                'appid': apiKey,
-                'units': 'metric',
-            }
-        );
-
-        final serverResponse = await http.get(url);
-    
-        if (serverResponse.statusCode != 200) {
-            throw Error();
-        }
-
-        final json = jsonDecode(serverResponse.body);
-
-        return Weather.fromJson(json);
-    }
-
-    Future<Weather> getWeatherByCoordinates(String lat, String lon) async {
-        final url = Uri.https(
-            _openweathermapUrl,
-            '/data/2.5/forecast',
-            {
-                'lat': lat,
-                'lon':  lon,
-                'appid': apiKey,
-                'units': 'metric',
-            }
-        );
-
-        final serverResponse = await http.get(url);
-    
-        if (serverResponse.statusCode != 200) {
-            throw Error();
-        }
-
-        final json = jsonDecode(serverResponse.body);
-
-        return Weather.fromJson(json);
     }
 }

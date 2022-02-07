@@ -1,32 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fewDays_weather.dart';
+part of 'fiveday_weather.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FewDaysWeatherAdapter extends TypeAdapter<FewDaysWeather> {
+class FiveDayWeatherAdapter extends TypeAdapter<FiveDayWeather> {
   @override
   final int typeId = 1;
 
   @override
-  FewDaysWeather read(BinaryReader reader) {
+  FiveDayWeather read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return FewDaysWeather(
-      forecastByDay: (fields[0] as Map).cast<String, dynamic>(),
+    return FiveDayWeather(
+      fiveDay: (fields[0] as Map).cast<String, dynamic>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, FewDaysWeather obj) {
+  void write(BinaryWriter writer, FiveDayWeather obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
-      ..write(obj.forecastByDay);
+      ..write(obj.fiveDay);
   }
 
   @override
@@ -35,7 +35,7 @@ class FewDaysWeatherAdapter extends TypeAdapter<FewDaysWeather> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FewDaysWeatherAdapter &&
+      other is FiveDayWeatherAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

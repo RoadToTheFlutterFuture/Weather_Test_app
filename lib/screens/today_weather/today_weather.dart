@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:weather_test_app/constants/icons/icons.dart';
 import 'package:weather_test_app/screens/today_weather/cubit/today_weather_cubit.dart';
 import 'package:weather_test_app/screens/today_weather/views/bigIcon_weather/bigIcon_weather.dart';
 import 'package:weather_test_app/screens/today_weather/views/parameters_weather/parameters_weather.dart';
@@ -26,8 +27,9 @@ class TodayWeather extends StatelessWidget {
                                 Flexible(
                                     flex: 3,
                                     child: BigIconWeather(
-                                        tempTitle:  '',
-                                        bigIcon: Icons.ac_unit_outlined,
+                                        cityTitle: state.repository!.cityTitle,
+                                        tempTitle:  state.repository!.tempTitle,
+                                        bigIcon: weatherDecoration[state.repository!.bigIcon],
                                     ),
                                 ),
                                 Flexible(
@@ -39,11 +41,7 @@ class TodayWeather extends StatelessWidget {
                                                 bottom: 0,
                                             ),
                                             ParametersWeather(
-                                                // humidity: state.repository!.humidity,
-                                                // precipitationVolume: state.repository!.precipitations,
-                                                // pressure: state.repository!.pressure,
-                                                // windSpeed: state.repository!.windSpeed,
-                                                // windDirection: state.repository!.windDirection,
+                                                parameters:  state.repository
                                             ),
                                             DecorationLine(
                                                 top: 0,

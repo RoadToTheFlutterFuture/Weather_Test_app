@@ -4,6 +4,8 @@ import 'package:weather_test_app/screens/settings/settings_screen.dart';
 import 'package:weather_test_app/screens/today_weather/today_weather.dart';
 
 
+//  Center(child: SpinKitThreeBounce(color: Colors.grey,),)
+
 class MainWeatherScreen extends StatefulWidget {
   const MainWeatherScreen({Key? key}) : super(key: key);
 

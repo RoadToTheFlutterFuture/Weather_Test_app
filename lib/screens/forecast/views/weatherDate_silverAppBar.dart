@@ -27,7 +27,7 @@ class WeatherDateSilverAppBar extends StatelessWidget {
                     title: Container(
                         height: double.infinity,
                          alignment: Alignment.bottomLeft,
-                        child: Text('First')),
+                        child: Text(title)),
                 ) :
                 null,
         );

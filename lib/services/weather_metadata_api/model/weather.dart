@@ -4,7 +4,7 @@ import 'package:weather_test_app/services/weather_metadata_api/helpers/helpers.d
 import 'forecast_by_day.dart';
 
 class Weather {
-    final Map<String, dynamic> forecastByDay;
+    final List<dynamic> forecastByDay;
 
     const Weather({
         required this.forecastByDay,
@@ -17,7 +17,7 @@ class Weather {
     }
 }
 
-Map<String, dynamic> _getDailyWeather(List<dynamic> threeHoursWeather){
+List<dynamic> _getDailyWeather(List<dynamic> threeHoursWeather){
     final Map<String, dynamic> dailyWeather = {};
 
     for(final item in threeHoursWeather) {
@@ -33,5 +33,21 @@ Map<String, dynamic> _getDailyWeather(List<dynamic> threeHoursWeather){
         }
     }
 
-    return dailyWeather;
+    return  _convertToList(dailyWeather);
+}
+
+/*
+* Convert Map<String, dynamic> to List<List<String, dyncami>>
+*  - - - - 
+* Example: input {'key', value} => output [ [key, value] ]
+*/
+
+List<dynamic> _convertToList(Map<String, dynamic> data) {
+    final List convertedData = [];
+
+    for (var element in data.entries) {
+          convertedData.add([element.key, element.value]);
+    }
+
+    return convertedData;
 }

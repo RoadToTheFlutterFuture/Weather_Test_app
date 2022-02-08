@@ -33,25 +33,40 @@ class WeatherRepository {
             );
         }
         catch (e) {
-            print('getWeatherERROR _______ $e');
-              hiveCash.putWeatherIntoBox(
-                todayData: TodayWeather(
-                    bigIcon: '50n',
-                    cityTitle: 'City',
-                    tempTitle: 'Temp',
-                    humidity: '- %',
-                    precipitations: '-',
-                    pressure: '- hPa',
-                    windSpeed: '- km/h',
-                    windDirection: '-',
-                ), 
-                fiveDayData: FiveDayWeather(fiveDay: {})
-            );
+            var todayWeather;
+            var fiveDayWeather;
+
+            try {
+                todayWeather = await getTodayWeather();
+                fiveDayWeather = await getFiveDayWeather();
+            }catch(e) {
+                print('___!!!!!!!__$e ____!!!!!!!___');
+                todayWeather = TodayWeather(
+                    bigIcon: '',
+                    cityTitle: '',
+                    tempTitle: '',
+                    humidity: '',
+                    precipitations: '',
+                    pressure: '',
+                    windSpeed: '',
+                    windDirection: '',
+                );
+                fiveDayWeather = FiveDayWeather(fiveDay: []);
+            }finally{
+                hiveCash.putWeatherIntoBox(
+                    todayData: todayWeather,
+                    fiveDayData: fiveDayWeather
+                );
+            }
+
         }
+           
     }
 
      Future getTodayWeather() async {
         final BoxWeather weather = await hiveCash.getWeatherFromBox();
+
+        print(weather);
 
         return weather.today;
     }
@@ -62,9 +77,13 @@ class WeatherRepository {
         return weather.fiveDay;
     }
 
+/*
+* weather.forecastByDay[0][1][0] => ForecastByDay
+*/
+
     String _getCurrentPrecipitations(Weather weather) {
-        final snowRecipitations = weather.forecastByDay['Today'][0].snowPrecipitations;
-        final rainRecipitations = weather.forecastByDay['Today'][0].rainPrecipitations;
+        final snowRecipitations = weather.forecastByDay[0][1][0].snowPrecipitations;
+        final rainRecipitations = weather.forecastByDay[0][1][0].rainPrecipitations;
 
         if(snowRecipitations.isEmpty && rainRecipitations.isEmpty) {
             return '0';

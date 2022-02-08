@@ -9,9 +9,9 @@ part 'today_weather_state.dart';
 class TodayWeatherCubit extends Cubit<TodayWeatherState> {
     final WeatherRepository weatherRepository;
 
-    TodayWeatherCubit(this.weatherRepository) : super(TodayWeatherState(
-        status: TodayWeatherStatus.gettingWeather,
-    ));
+    TodayWeatherCubit(this.weatherRepository) : super(
+        TodayWeatherState( status: TodayWeatherStatus.initial )
+    );
 
     fetchWeather() async {
         final TodayWeather weather = await weatherRepository.getTodayWeather();
@@ -21,7 +21,6 @@ class TodayWeatherCubit extends Cubit<TodayWeatherState> {
             status: TodayWeatherStatus.loaded
         ));
     }
-
 
     void shareWeatherText() async {
         final String cityText = 'City: ${state.repository!.cityTitle}';

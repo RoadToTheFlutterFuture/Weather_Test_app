@@ -10,12 +10,16 @@ class HiveCashService {
 
         if(!Hive.isAdapterRegistered(0) && 
            !Hive.isAdapterRegistered(1) && 
-           !Hive.isAdapterRegistered(2) 
+           !Hive.isAdapterRegistered(5)
           ){
             Hive.registerAdapter(TodayWeatherAdapter());
             Hive.registerAdapter(FiveDayWeatherAdapter());
             Hive.registerAdapter(ForecastByDayAdapter());
         }
+
+            // Hive.deleteBoxFromDisk('today');
+            // Hive.deleteBoxFromDisk('fiveDay');
+            // Hive.deleteFromDisk();
     }
 
     void putWeatherIntoBox({
@@ -35,7 +39,6 @@ class HiveCashService {
     Future getWeatherFromBox() async {
         final toDaybox = await Hive.openBox<TodayWeather>("today");
         final TodayWeather? todayWeather = await toDaybox.get('weather');
-        print(todayWeather);
 
         final fiveDayBox = await Hive.openBox<FiveDayWeather>("fiveDay");
         final FiveDayWeather? fiveDayWeather = await fiveDayBox.get('weather');

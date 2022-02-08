@@ -1,17 +1,21 @@
 
 import 'package:flutter/material.dart';
+import 'package:weather_icons/weather_icons.dart';
+import 'package:weather_test_app/constants/icons/icons.dart';
 
 class WeatherDescriptionListTile extends StatelessWidget {
     final bool isLastTile;
     final String title;
     final String subtitle;
     final String trailing;
+    final IconData icon;
 
     const WeatherDescriptionListTile({
         this.title = '',
         this.subtitle = '',
         this.trailing = '',
         this.isLastTile = false,
+        this.icon = Icons.wb_sunny,
         Key? key
     }) : super(key: key);
 
@@ -43,9 +47,8 @@ class WeatherDescriptionListTile extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(left: 15),
                 alignment: Alignment.centerLeft,
-                child: Icon(Icons.wb_sunny_outlined, size: 60,)
+                child: BoxedIcon(icon, size: 60,)
               ),
           ] 
         );

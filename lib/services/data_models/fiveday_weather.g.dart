@@ -8,7 +8,7 @@ part of 'fiveday_weather.dart';
 
 class FiveDayWeatherAdapter extends TypeAdapter<FiveDayWeather> {
   @override
-  final int typeId = 1;
+  final int typeId = 5;
 
   @override
   FiveDayWeather read(BinaryReader reader) {
@@ -17,7 +17,7 @@ class FiveDayWeatherAdapter extends TypeAdapter<FiveDayWeather> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return FiveDayWeather(
-      fiveDay: (fields[0] as Map).cast<String, dynamic>(),
+      fiveDay: (fields[0] as List).cast<dynamic>(),
     );
   }
 

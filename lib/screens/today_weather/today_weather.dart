@@ -17,11 +17,10 @@ class TodayWeather extends StatelessWidget {
         create: (context) => TodayWeatherCubit(context.read<WeatherRepository>()),
         child: BlocBuilder<TodayWeatherCubit, TodayWeatherState>(
             builder: (context, state) {
-                if(state.status == TodayWeatherStatus.gettingWeather) {
+                if(state.status == TodayWeatherStatus.initial) {
                     context.read<TodayWeatherCubit>().fetchWeather();
                 }
-                return state.status == TodayWeatherStatus.gettingWeather ?
-                        Center(child: SpinKitThreeBounce(color: Colors.grey,),) :
+                return state.status == TodayWeatherStatus.loaded ?
                         Column(
                             children: [
                                 Flexible(
@@ -61,7 +60,8 @@ class TodayWeather extends StatelessWidget {
                                         ),
                                     )),
                              ],
-                    );
+                    ) : 
+                    Center(child: SpinKitThreeBounce(color: Colors.grey,),);
             },
         ),
     );

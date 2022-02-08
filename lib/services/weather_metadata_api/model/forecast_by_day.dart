@@ -44,10 +44,14 @@ class ForecastByDay {
     @HiveField(11)
     final Map rainPrecipitations;
 
+    @HiveField(12)
+    final String icon;
+
     ForecastByDay({
         required this.date,
         required this.time,
         required this.description,
+        required this.icon,
         required this.parameter,
         required this.snowPrecipitations,
         required this.rainPrecipitations,
@@ -64,6 +68,7 @@ class ForecastByDay {
             date: json['dt_txt'] as String,
             time: getHours(utcDate: json['dt_txt'] as String),
             description: json['weather'][0]['description'] as String,
+            icon: json['weather'][0]['icon'] as String,
             parameter: json['weather'][0]['main'] as String,
             snowPrecipitations: (json['snow'] ?? {}) as Map,
             rainPrecipitations: (json['rain'] ?? {}) as Map,

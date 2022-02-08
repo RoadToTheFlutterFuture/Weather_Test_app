@@ -17,14 +17,14 @@ class TodayWeatherAdapter extends TypeAdapter<TodayWeather> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TodayWeather(
-      bigIcon: fields[0] as String,
-      cityTitle: fields[1] as String,
-      tempTitle: fields[2] as String,
-      humidity: fields[3] as String,
-      precipitations: fields[4] as String,
-      pressure: fields[5] as String,
-      windSpeed: fields[6] as String,
-      windDirection: fields[7] as String,
+      bigIcon: fields[0] == null ? '50n' : fields[0] as String,
+      cityTitle: fields[1] == null ? 'City' : fields[1] as String,
+      tempTitle: fields[2] == null ? 'Temp' : fields[2] as String,
+      humidity: fields[3] == null ? 'humidity' : fields[3] as String,
+      precipitations: fields[4] == null ? 'precipi' : fields[4] as String,
+      pressure: fields[5] == null ? 'pressure' : fields[5] as String,
+      windSpeed: fields[6] == null ? 'windSpeed' : fields[6] as String,
+      windDirection: fields[7] == null ? 'windDirection' : fields[7] as String,
     );
   }
 

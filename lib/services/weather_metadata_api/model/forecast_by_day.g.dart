@@ -20,6 +20,7 @@ class ForecastByDayAdapter extends TypeAdapter<ForecastByDay> {
       date: fields[0] as String,
       time: fields[1] as String,
       description: fields[2] as String,
+      icon: fields[12] as String,
       parameter: fields[3] as String,
       snowPrecipitations: (fields[10] as Map).cast<dynamic, dynamic>(),
       rainPrecipitations: (fields[11] as Map).cast<dynamic, dynamic>(),
@@ -35,7 +36,7 @@ class ForecastByDayAdapter extends TypeAdapter<ForecastByDay> {
   @override
   void write(BinaryWriter writer, ForecastByDay obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.date)
       ..writeByte(1)
@@ -59,7 +60,9 @@ class ForecastByDayAdapter extends TypeAdapter<ForecastByDay> {
       ..writeByte(10)
       ..write(obj.snowPrecipitations)
       ..writeByte(11)
-      ..write(obj.rainPrecipitations);
+      ..write(obj.rainPrecipitations)
+      ..writeByte(12)
+      ..write(obj.icon);
   }
 
   @override
